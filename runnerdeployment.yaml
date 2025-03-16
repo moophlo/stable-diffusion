@@ -1,0 +1,10 @@
+# runnerdeployment.yaml
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: stable-diffusion-runnerdeploy
+spec:
+  replicas: 1
+  template:
+    spec:
+      repository: moophlo/stable-diffusion
