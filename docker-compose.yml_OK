@@ -1,0 +1,33 @@
+name: stable
+services:
+    diffusion:
+        build: .
+        stdin_open: true
+        restart: always
+        tty: true
+        privileged: true
+	environment:
+	  WEBUI_USER: "admin"
+	  WEBUI_PASSWORD: "ThisIsMySuperSecurePassword.123"
+	  HIP_VISIBLE_DEVICES: "0"
+        devices:
+            - /dev/kfd
+            - /dev/dri
+        group_add:
+            - video
+        ipc: host
+        cap_add:
+            - SYS_PTRACE
+        security_opt:
+            - seccomp=unconfined
+        volumes:
+            - ./models:/dockerx/stable-diffusion-webui/models
+            - ./extensions:/dockerx/stable-diffusion-webui/extensions
+        ports:
+            - 7860:7860
+        healthcheck:
+          test: curl --fail http://localhost:7860/sdapi/v1/options || exit 1
+          interval: 30s
+          timeout: 30s
+          retries: 3
+          start_period: 240s
