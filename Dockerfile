@@ -7,7 +7,7 @@ RUN apt update && apt full-upgrade -y && apt install -y bc google-perftools && a
 #RUN conda create -y --name sd python=3.10.6 
 #RUN conda install -y -n sd -c conda-forge libstdcxx-ng=12.1.0 --no-deps 
 #RUN conda install -y -n sd -c conda-forge insightface=0.7.3 --no-deps
-RUN pip install libstdcxx-ng==12.1.0 libstdcxx-ng==12.1.0 
+RUN pip install libstdcxx-ng  insightface
 
 #RUN conda init bash && . ~/.bashrc && echo "conda activate sd" >> ~/.bashrc
 #RUN rm -rf /dockerx/stable-diffusion-webui
